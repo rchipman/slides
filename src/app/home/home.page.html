@@ -1,12 +1,22 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+  <ion-slides pager (ionSlideDidChange)="onSlideChange($event)" (ionSlideDrag)="onSlideDragging($event)" [options]="slideOptions">
+    <ion-slide *ngFor="let date of dateArray; let i = index">
+      SLIDE {{ i }}
+      {{ date | date:'M/d/yy'}}
+    </ion-slide>
+  </ion-slides>
+
+  <h3>Slider Event Counts</h3>
+  <ul>
+    <li><strong>ionSlideDidChange: </strong> <span>{{ionSlideDidChangeSubject | async}}</span></li>
+    <li><strong>ionSlideDrag: </strong> <span>{{ionSlideDragSubject | async}}</span></li>
+  </ul>
 </ion-content>
